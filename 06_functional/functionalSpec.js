@@ -26,7 +26,7 @@ describe("makeAdder", function() {
 describe("forEach", function() {
   it("takes an array and an iterating function and runs the function for each element of the array", function() {
     runMeThreeTimes = jasmine.createSpy('forEach function');
-    forEach([1,2,3], runMeThreeTimes);
+    forEach([1, 2, 3], runMeThreeTimes);
     expect(runMeThreeTimes).toHaveBeenCalledWith(1);
     expect(runMeThreeTimes).toHaveBeenCalledWith(2);
     expect(runMeThreeTimes).toHaveBeenCalledWith(3);
@@ -37,11 +37,15 @@ describe("forEach", function() {
 // and returns and array with the result of that function
 describe("map", function() {
   it("takes a doubling function and applies it to an array", function() {
-    expect(map([1,2,3], function(elem) { return elem * 2;})).toEqual([2,4,6]);
+    expect(map([1, 2, 3], function(elem) {
+      return elem * 2;
+    })).toEqual([2, 4, 6]);
   });
 
   it("takes a tripling function", function() {
-    expect(map([1,2,3], function(elem) { return elem * 3; })).toEqual([3,6,9]);
+    expect(map([1, 2, 3], function(elem) {
+      return elem * 3;
+    })).toEqual([3, 6, 9]);
   });
 });
 
@@ -49,33 +53,37 @@ describe("map", function() {
 // based on the boolean return value of the function
 describe("filter", function() {
   var even_filter = function(element) {
-    if(element % 2 === 0)
+    if (element % 2 === 0)
       return true;
     else
       return false;
-  }; 
+  };
 
   it("filters an array based on evens", function() {
-    expect(filter([1,2,3,4,5,6,7,8], even_filter)).toEqual([2,4,6,8]);
+    expect(filter([1, 2, 3, 4, 5, 6, 7, 8], even_filter)).toEqual([2, 4, 6, 8]);
   });
 
   it("filters an array based on odds", function() {
     var odd_filter = function(element) {
       return !even_filter(element);
     };
-    expect(filter([1,2,3,4,5,6,7,8], odd_filter)).toEqual([1,3,5,7]);
+    expect(filter([1, 2, 3, 4, 5, 6, 7, 8], odd_filter)).toEqual([1, 3, 5, 7]);
   });
 });
 
 // contains checks if a collection has an element that matches the second parameter's value
 describe("contains", function() {
   it("should return true if a collection contains a user-specified value", function() {
-    expect(contains([1,2,3], 2)).toEqual(true);
-    expect(contains({moe:1, larry:3, curly:9}, 3)).toEqual(true);
+    expect(contains([1, 2, 3], 2)).toEqual(true);
+    expect(contains({
+      moe: 1,
+      larry: 3,
+      curly: 9
+    }, 3)).toEqual(true);
   });
 
   it("should return false if a collection does not contain a user-specified value", function() {
-    expect(contains([1,3,9], 2)).toEqual(false);
+    expect(contains([1, 3, 9], 2)).toEqual(false);
   });
 });
 
@@ -86,7 +94,7 @@ describe("contains", function() {
 describe("reduce takes an array, starting point, and combining function and", function() {
   it("sums up the array", function() {
     var add = function(a, b) {
-      return a+b;
+      return a + b;
     };
     expect(reduce([3, 5, 7], 0, add)).toEqual(15);
   });
@@ -101,18 +109,22 @@ describe("reduce takes an array, starting point, and combining function and", fu
 describe("sums an array using reduce", function() {
   it("adds up an array and reduce is called", function() {
     spyOn(window, 'reduce').andCallThrough();
-    expect(sum([1,2,3])).toEqual(6);
+    expect(sum([1, 2, 3])).toEqual(6);
     expect(reduce).toHaveBeenCalled();
   });
 });
 
 
 describe("every", function() {
-  var getValue = function(i) { return i; };
-  var isEven = function(num) { return num % 2 === 0; };
+  var getValue = function(i) {
+    return i;
+  };
+  var isEven = function(num) {
+    return num % 2 === 0;
+  };
 
   it("should handle an empty set", function() {
-    expect(every([], getValue) ).toEqual(true);
+    expect(every([], getValue)).toEqual(true);
   });
 
   it("should handle a set that contains only true values", function() {
@@ -133,7 +145,7 @@ describe("every", function() {
 });
 
 describe("any", function() {
-  var isEven = function(number){
+  var isEven = function(number) {
     return number % 2 === 0;
   };
 
@@ -168,18 +180,14 @@ describe("any", function() {
 describe("once", function() {
   it("should only increment num one time", function() {
     var num = 0;
-    var increment = once(function() {
+    var funcPassedToOnce = function() {
       num++;
-    });
+    }
+    var increment = once(funcPassedToOnce);
+
     increment();
     increment();
 
     expect(num).toEqual(1);
   });
 });
-
-
-
-
-
-

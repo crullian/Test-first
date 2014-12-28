@@ -4,11 +4,11 @@ describe("Mammal class", function() {
   });
 
   it("should take name in its constructor", function() {
-    expect(myMammal.name).toEqual("Joe");    
+    expect(myMammal.name).toEqual("Joe");
   });
 
-  it("should have an array called offspring", function() { 
-    expect(myMammal.offspring).toEqual([]);    
+  it("should have an array called offspring", function() {
+    expect(myMammal.offspring).toEqual([]);
   });
 
   it("should have a sayHello function", function() {
@@ -24,7 +24,7 @@ describe("Mammal class", function() {
 
 describe("Cat class", function() {
   beforeEach(function() {
-    cat = new Cat("Stewart", "Tabby");  
+    cat = new Cat("Stewart", "Tabby");
   });
 
   it("should have a name, color in its constructor", function() {
