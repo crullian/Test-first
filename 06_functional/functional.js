@@ -1,23 +1,22 @@
 function countWords(str) {
   var arr = str.split(" ");
-  var total = 0;
+  var result = 0;
   for (var i = 0; i < arr.length; i++) {
-    total += 1;
-  }
-  return total;
+    result += 1;
+  };
+  return result;
 }
 
-function makeAdder(A) {
-  function adderOf2function(B) {
-    return A + B;
-  }
-  return adderOf2function;
+function makeAdder(num1) {
+  return function(num2) {
+    return num1 + num2;
+  };
 }
 
 function forEach(arr, func) {
   for (var i = 0; i < arr.length; i++) {
     func(arr[i]);
-  }
+  };
 }
 
 function map(arr, func) {
@@ -32,41 +31,42 @@ function filter(arr, func) {
   var newArr = [];
   for (var i = 0; i < arr.length; i++) {
     if (func(arr[i])) {
-      newArr.push(arr[i]);
+      newArr.push(arr[i])
     }
-  }
+  };
   return newArr;
 }
 
-function contains(arr, elem) {
-  for (var i in arr) {
-    if (arr[i] === elem) {
+function contains(coll, elem) {
+  var result;
+  for (var i in coll) {
+    if (coll[i] === elem) {
       return true;
     }
   }
   return false;
 }
 
-function reduce(arr, strt, func) {
-
+function reduce(arr, total, func) {
   for (var i = 0; i < arr.length; i++) {
-    strt = func(strt, arr[i]);
-  }
-  return strt;
-}
 
-function countWordsInReduce(a, b) {
-  var array = b.split(" ");
-  for (var i = 0; i < array.length; i++) {
-    a += 1;
+    total = func(total, arr[i]);
   }
-  return a;
-}
+  return total;
+};
+
+function countWordsInReduce(result, str) {
+  var arr = str.split(" ");
+  for (var i = 0; i < arr.length; i++) {
+    result += 1;
+  }
+  return result;
+};
 
 function sum(arr) {
   function add(a, b) {
     return a + b;
-  };
+  }
   return reduce(arr, 0, add);
 }
 
@@ -75,7 +75,7 @@ function every(arr, func) {
     if (!func(arr[i])) {
       return false;
     }
-  }
+  };
   return true;
 }
 
@@ -83,66 +83,27 @@ function any(arr, func) {
   if (typeof func === "undefined") {
     func = function(a) {
       return a;
-    };
+    }
   }
   for (var i = 0; i < arr.length; i++) {
     if (func(arr[i])) {
       return true;
     }
-  }
+  };
   return false;
 }
 
-// function once(func) { // Question about this one!
-//   var hasRun = false;
-//   return function() {
-//     if (hasRun === true) {
-//       func();
-//     }
-//     hasRun = true;
-//   }
-// }
-
-// num var to 0
-// once function is called, and it accepts a function as a parameter
-// the return value of the once function is assigned to the increment variable.
-// the once function returns a function object
-// when we check the num value it is set to 1;
-
 function once(func) {
-  var runAlready = false;
-  // debugger;
-  return function notTheOnceFunction() {
-    // debugger;
-    if (!runAlready) {
-      func();
-      runAlready = true;
+  var hasRun = false;
+  return function() {
+    if (hasRun) {
+      func()
     }
 
+    hasRun = true;
   }
-
 }
 
-// func();
 
 
-
-// var hasRun = false;
-
-// if (hasRun === true) {
-// }
-// hasRun = true;
-
-
-// function once(func) {
-//   var hasRun = false;
-//   if (hasRun === true) {
-//     hasRun = true;
-//     return func();
-//   } else {
-//     return function() {};
-//   }
-// }
-
-
-// HA!
+////Oh

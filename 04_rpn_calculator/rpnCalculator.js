@@ -1,29 +1,32 @@
-function Calculator() {
-
-  var total = [0];
+var Calculator = function() {
+  var total = [];
 
   this.value = function() {
     return total[total.length - 1];
-  }
+  };
 
   this.plus = function() {
-    total.push(this.pop() + this.pop());
+    var num1 = this.pop();
+    var num2 = this.pop();
+    total.push(num1 + num2);
   }
 
   this.minus = function() {
-    var secNum = this.pop();
-    var firstNum = this.pop();
-    total.push(firstNum - secNum); // Order matters!
+    var num1 = this.pop();
+    var num2 = this.pop();
+    total.push(num2 - num1);
   }
 
   this.times = function() {
-    total.push(this.pop() * this.pop());
+    var num1 = this.pop();
+    var num2 = this.pop();
+    total.push(num1 * num2);
   }
 
   this.divide = function() {
-    var secNum = this.pop();
-    var firstNum = this.pop();
-    total.push(firstNum / secNum); // Order matters!
+    var num1 = this.pop();
+    var num2 = this.pop();
+    total.push(num2 / num1);
   }
 
   this.push = function(num) {
@@ -33,8 +36,9 @@ function Calculator() {
   this.pop = function() {
     var result = total.pop();
     if (typeof result === "undefined") {
-      throw "calculator is empty"
+      throw "calculator is empty";
+    } else {
+      return result;
     }
-    return result;
   }
 };

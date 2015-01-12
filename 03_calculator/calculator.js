@@ -14,7 +14,7 @@ function Calculator() {
   //   return result;
   // };
 
-  this.value = function() {
+  this.value = function() { // or Calcuator.prototype.value
     return total;
   }
 
@@ -40,3 +40,21 @@ function Calculator() {
 
 
 };
+
+// Or 
+
+// function Calculator() {
+//   this.currentValue = 0;
+// }
+
+// Calculator.prototype.value = function() {
+//   return this.currentValue;
+// }
+
+// Calculator.prototype.add = function(val) {
+//   this.currentValue += val;
+// }
+
+// Calculator.prototype.subtract = function(val) {
+//   this.currentValue -= val;
+// }

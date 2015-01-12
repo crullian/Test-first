@@ -24,6 +24,8 @@ var Cat = function(name, color) {
 
 Cat.prototype = new Mammal();
 
+
+
 // // all function objects have a .prototype property
 // // all objects have an internal linkage to another Object's prototype
 // // it is represented by [[Prototype]] or .__proto__
